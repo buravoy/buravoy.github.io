@@ -215,6 +215,17 @@ section {
   margin: 40px auto 0;
   transition: 0.3s;
 }
+.modal .order-button.blue {
+  background-color: dodgerblue;
+}
+.modal .order-button.green {
+  background-color: forestgreen;
+  pointer-events: none;
+}
+.modal .order-button:disabled {
+  background-color: #c3c3c3;
+  pointer-events: none;
+}
 .modal .order-button:hover {
   filter: brightness(0.9);
 }
@@ -246,7 +257,6 @@ section {
   display: flex;
   justify-content: space-between;
   padding: 0 5px;
-  transition: 0.3s;
   font-weight: 500;
 }
 .phone-digit label input {
@@ -255,6 +265,7 @@ section {
 .phone-digit label:hover, .phone-digit label:has(input:checked) {
   cursor: pointer;
   color: dodgerblue;
+  background-color: #E6E6E6;
 }
 
 /*# sourceMappingURL=style.css.map */

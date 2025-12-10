@@ -1,26 +1,72 @@
+const modalBackdrop = document.getElementById("backdrop");
+const modalWindow = modalBackdrop.querySelector(".modal");
+const modalTitle = modalWindow.querySelector(".title");
+const orderButton = document.querySelector(".order-button");
+const phoneSelector = document.querySelector(".phone-selector");
+const phoneNumber = document.querySelector(".phone-number");
+const itemCards = document.querySelectorAll(".item-card");
+
 function shuffleElements(parent) {
     const children = [...parent.children];
     children.sort(() => Math.random() - 0.5);
     children.forEach(child => parent.appendChild(child));
 }
 
-const modalBackdrop = document.getElementById("backdrop");
-const modalWindow = modalBackdrop.querySelector(".modal");
-const modalTitle = modalWindow.querySelector(".title");
+function parseInputs(parent, phoneItem) {
+    const children = [...parent.children];
+    let val = '_';
 
-modalWindow.addEventListener("mousedown", (e) => e.stopPropagation());
+    for (const c of children) {
+        const i = c.querySelector('input');
+        if (i.checked) val = i.value;
+    }
 
-modalBackdrop.addEventListener("mousedown", () => {
+    phoneItem.innerHTML = val;
+}
+
+function isPhoneCorrect(parent) {
+    const children = parent.querySelectorAll('span');
+    let isCorrect = true;
+
+    for (const c of children) {
+        if (c.innerText === '_') isCorrect = false;
+    }
+    return isCorrect;
+}
+
+function clearPhone(parent) {
+    const children = parent.querySelectorAll('span');
+    const inputs = document.querySelectorAll('input[type=radio]');
+    for (const c of children) c.innerText = '_';
+    for (const i of inputs) i.checked = false;
+}
+
+function orderComplete() {
     modalBackdrop.classList.remove("show");
     setTimeout(() => {
-        modalTitle.innerText = '';
-
+        modalTitle.innerText = ''
+        orderButton.innerText = 'ЖДУ ЗВОНКА'
+        orderButton.classList.remove("green");
+        orderButton.classList.add("blue");
+        clearPhone(phoneNumber);
     }, 300)
+}
 
+modalWindow.addEventListener("mousedown", e => e.stopPropagation());
+
+modalBackdrop.addEventListener("mousedown", () => setTimeout(() => {
+    modalTitle.innerText = ''
+    modalBackdrop.classList.remove("show");
+}, 300));
+
+orderButton.addEventListener("click", (e) => {
+    if (!isPhoneCorrect(phoneNumber)) return;
+
+    orderButton.innerText = 'ЖДИТЕ ЗВОНКА!';
+    orderButton.classList.add("green");
+
+    setTimeout(orderComplete, 3000)
 })
-
-const phoneSelector = document.querySelector(".phone-selector");
-const phoneNumber = document.querySelector(".phone-number");
 
 for (let i = 0; i <= 10; i++) {
     const phoneDigit = document.createElement("div");
@@ -29,16 +75,21 @@ for (let i = 0; i <= 10; i++) {
     for (let j = 0; j <= 9; j++) {
         const digitItem = document.createElement("label");
         const input = document.createElement("input");
+
         input.type = "radio";
         input.name = 'd' + i;
         input.value = j.toString();
         digitItem.innerText = j.toString();
         digitItem.append(input);
+        const phoneItem = phoneNumber.querySelector("#" + input.name);
 
-        digitItem.addEventListener("change", () => {
-            console.log(input.value);
-            phoneNumber.querySelector("#"+input.name).innerText = input.value;
-        })
+        input.addEventListener("change", () => {
+            phoneItem.innerText = input.value;
+            orderButton.disabled = !isPhoneCorrect(phoneNumber);
+        });
+
+        digitItem.addEventListener("mouseenter", () => (phoneItem.innerText === '_') ? phoneItem.innerText = input.value : false);
+        digitItem.addEventListener("mouseleave", () => parseInputs(phoneDigit, phoneItem));
 
         phoneDigit.append(digitItem);
         shuffleElements(phoneDigit);
@@ -47,8 +98,6 @@ for (let i = 0; i <= 10; i++) {
     phoneSelector.append(phoneDigit);
 }
 
-
-const itemCards = document.querySelectorAll(".item-card");
 itemCards.forEach(card => {
     const button = card.querySelector("button");
     const title = card.querySelector("h3").innerText

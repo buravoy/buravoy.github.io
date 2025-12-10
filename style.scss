@@ -241,6 +241,20 @@ section {
     margin: 40px auto 0;
     transition: 0.3s;
 
+    &.blue {
+      background-color: dodgerblue;
+    }
+
+    &.green {
+      background-color: forestgreen;
+      pointer-events: none;
+    }
+
+    &:disabled {
+      background-color: #c3c3c3;
+      pointer-events: none;
+    }
+
     &:hover {
       filter: brightness(.9);
     }
@@ -279,7 +293,6 @@ section {
       display: flex;
       justify-content: space-between;
       padding: 0 5px;
-      transition: 0.3s;
       font-weight: 500;
 
       input {
@@ -289,6 +302,7 @@ section {
       &:hover, &:has(input:checked) {
         cursor: pointer;
         color: dodgerblue;
+        background-color: #E6E6E6;
       }
     }
   }
