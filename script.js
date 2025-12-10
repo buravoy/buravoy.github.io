@@ -6,6 +6,8 @@ const phoneSelector = document.querySelector(".phone-selector");
 const phoneNumber = document.querySelector(".phone-number");
 const itemCards = document.querySelectorAll(".item-card");
 
+let completeInterval;
+
 function shuffleElements(parent) {
     const children = [...parent.children];
     children.sort(() => Math.random() - 0.5);
@@ -41,13 +43,17 @@ function clearPhone(parent) {
     for (const i of inputs) i.checked = false;
 }
 
+function dropModalState() {
+    modalTitle.innerText = ''
+    orderButton.innerText = 'ЖДУ ЗВОНКА'
+    orderButton.classList.remove("green");
+    orderButton.classList.add("blue");
+}
+
 function orderComplete() {
     modalBackdrop.classList.remove("show");
-    setTimeout(() => {
-        modalTitle.innerText = ''
-        orderButton.innerText = 'ЖДУ ЗВОНКА'
-        orderButton.classList.remove("green");
-        orderButton.classList.add("blue");
+    completeInterval = setTimeout(() => {
+        dropModalState();
         clearPhone(phoneNumber);
     }, 300)
 }
@@ -55,8 +61,8 @@ function orderComplete() {
 modalWindow.addEventListener("mousedown", e => e.stopPropagation());
 
 modalBackdrop.addEventListener("mousedown", () => setTimeout(() => {
-    modalTitle.innerText = ''
-    modalBackdrop.classList.remove("show");
+    dropModalState();
+    clearTimeout(completeInterval)
 }, 300));
 
 orderButton.addEventListener("click", (e) => {
