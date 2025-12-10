@@ -28,6 +28,7 @@ header {
   justify-content: center;
   padding: 20px 0;
   border-bottom: 1px solid #E6E6E6;
+  cursor: pointer;
 }
 header .logo {
   border-radius: 10px;
@@ -60,8 +61,12 @@ nav {
 nav a {
   font-weight: 700;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 20px;
   color: #2C2825;
+  transition: 0.3s;
+}
+nav a:hover {
+  background-color: #E6E6E6;
 }
 
 menu {
@@ -71,10 +76,21 @@ menu {
 }
 menu li {
   padding: 10px 0;
+  transition: 0.3s;
+}
+menu li:hover {
+  cursor: pointer;
+  color: dodgerblue;
 }
 
 main {
   display: flex;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
 }
 
 aside {
@@ -94,7 +110,8 @@ section {
 
 .slide {
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
+  border-bottom: 1px solid #E6E6E6;
 }
 .slide h2 {
   font-size: 58px;
@@ -104,17 +121,140 @@ section {
 .slide .annotation {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
 }
 .slide-home {
   background-color: burlywood;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .slide-home .annotation {
   text-align: right;
+  margin-bottom: 5px;
+}
+
+.item-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.item-card {
+  border: 1px solid #E6E6E6;
+  display: flex;
+  flex-direction: column;
+}
+.item-card h3 {
+  background-color: coral;
+  min-height: 150px;
+  padding: 20px;
+}
+.item-card p {
+  padding: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.item-card button {
+  width: 100%;
+  margin-top: auto;
+  border: none;
+  outline: none;
+  font-family: "RobotoFlex", sans-serif;
+  background-color: dodgerblue;
+  color: white;
+  font-weight: 500;
+  padding: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.item-card button:hover {
+  filter: brightness(0.9);
+}
+
+.modal {
+  width: 500px;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+}
+.modal .title {
+  font-size: 24px;
+  text-align: center;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.3s;
+  overflow: auto;
+}
+.modal-backdrop.show {
+  opacity: 1;
+  z-index: 999;
+}
+.modal .order-button {
+  display: block;
+  width: 260px;
+  border: none;
+  outline: none;
+  font-family: "RobotoFlex", sans-serif;
+  background-color: dodgerblue;
+  color: white;
+  font-weight: 500;
+  padding: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 40px auto 0;
+  transition: 0.3s;
+}
+.modal .order-button:hover {
+  filter: brightness(0.9);
+}
+
+.phone-selector {
+  display: flex;
+  justify-content: center;
+}
+.phone-number {
+  font-family: "Bruno", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  padding: 10px 0 20px;
+}
+.phone-text {
+  text-align: center;
+  margin-top: 20px;
+}
+.phone-digit {
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  border: 1px solid #E6E6E6;
+}
+.phone-digit:not(:last-child) {
+  border-right: none;
+}
+.phone-digit label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+.phone-digit label input {
+  pointer-events: none;
+}
+.phone-digit label:hover, .phone-digit label:has(input:checked) {
+  cursor: pointer;
+  color: dodgerblue;
 }
 
 /*# sourceMappingURL=style.css.map */

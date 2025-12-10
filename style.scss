@@ -30,6 +30,7 @@ header {
   justify-content: center;
   padding: 20px 0;
   border-bottom: 1px solid #E6E6E6;
+  cursor: pointer;
 
   .logo {
     border-radius: 10px;
@@ -66,8 +67,13 @@ nav {
   a {
     font-weight: 700;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 20px;
     color: #2C2825;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #E6E6E6;
+    }
   }
 }
 
@@ -78,11 +84,23 @@ menu {
 
   li {
     padding: 10px 0;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: dodgerblue;
+    }
   }
 }
 
 main {
   display: flex;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
 }
 
 aside {
@@ -102,7 +120,8 @@ section {
 
 .slide {
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
+  border-bottom: 1px solid #E6E6E6;
 
   h2 {
     font-size: 58px;
@@ -113,18 +132,165 @@ section {
   .annotation {
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
   }
 
   &-home {
     background-color: burlywood;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     .annotation {
       text-align: right;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.item {
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+  }
+
+  &-card {
+    border: 1px solid #E6E6E6;
+    display: flex;
+    flex-direction: column;
+
+
+    h3 {
+      background-color: coral;
+      min-height: 150px;
+      padding: 20px;
+    }
+
+    p {
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    button {
+      width: 100%;
+      margin-top: auto;
+      border: none;
+      outline: none;
+      font-family: "RobotoFlex", sans-serif;
+      background-color: dodgerblue;
+      color: white;
+      font-weight: 500;
+      padding: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        filter: brightness(.9);
+      }
+    }
+  }
+}
+
+.modal {
+  width: 500px;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    opacity: 0;
+    z-index: -1;
+    transition: .3s;
+    overflow: auto;
+    
+
+    &.show {
+      opacity: 1;
+      z-index: 999;
+    }
+  }
+
+  .order-button {
+    display: block;
+    width: 260px;
+    border: none;
+    outline: none;
+    font-family: "RobotoFlex", sans-serif;
+    background-color: dodgerblue;
+    color: white;
+    font-weight: 500;
+    padding: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 40px auto 0;
+    transition: 0.3s;
+
+    &:hover {
+      filter: brightness(.9);
+    }
+  }
+}
+
+
+.phone {
+  &-selector {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-number {
+    font-family: "Bruno", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 20px;
+  }
+
+  &-text {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  &-digit {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    border: 1px solid #E6E6E6;
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 5px;
+      transition: 0.3s;
+      font-weight: 500;
+
+      input {
+        pointer-events: none;
+      }
+
+      &:hover, &:has(input:checked) {
+        cursor: pointer;
+        color: dodgerblue;
+      }
     }
   }
 }
