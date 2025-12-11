@@ -2,29 +2,29 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Alien's warfare technology</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <main>
     <aside>
-        <header>
-            <img class="logo" src="/public/futurama-space-aliens.gif" alt="awt logo">
+        <header onclick="goToSlide('home', 'Alien\'s warfare technology')">
+            <img class="logo" src="/images/futurama-space-aliens.gif" alt="awt logo">
             <h1>
                 <span class="row1">Alien's warfare</span>
                 <span class="row2">technology</span>
             </h1>
         </header>
         <nav>
-            <a href="#">Личная безопастность</a>
-            <a href="#">Базы и форпосты</a>
-            <a href="#">Световые мечи и бластеры</a>
-            <a href="#">Сверх технологии</a>
+            <span onclick="goToSlide('security')">Личная безопасность</span>
+            <span onclick="goToSlide('constructions')">Базы и форпосты</span>
+            <span onclick="goToSlide('weapon')">Световые мечи и бластеры</span>
+            <span onclick="goToSlide('artefacts')">Сверх технологии</span>
         </nav>
         <menu>
-            <li>Записаться на тест драйв</li>
-            <li>Контакты</li>
+            <li onclick="openModal('Записаться на тест драйв')">Записаться на тест драйв</li>
+            <li onclick="goToSlide('contacts')">Контакты</li>
         </menu>
     </aside>
 
@@ -48,7 +48,7 @@
 
             <div class="item-list">
                 <div class="item-card">
-                    <h3>Костюм Дарта Вейдера</h3>
+                    <h3 style="background-image: url('images/Screenshot_1.png');">Костюм Дарта Вейдера</h3>
                     <p>
                         Атмосферный бронескафандр жизнеобеспечения и усиления сил оператора. <br>
                         Интегрирует респираторную, кардиостимулирующую и кибернетическую системы <br>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="item-card">
-                    <h3>Силовая броня T-51</h3>
+                    <h3 style="background-image: url('images/Screenshot_2.png');">Силовая броня T-51</h3>
                     <p>Мобильная пехотная платформа в виде герметичного силового каркаса. <br>
                         Позволяет оператору переносить тяжелое вооружение, <br>
                         обеспечивает полную защиту от стрелкового оружия, радиации и энергетических атак. <br>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="item-card">
-                    <h3>Энергетический щит</h3>
+                    <h3 style="background-image: url('images/Screenshot_3.png');">Энергетический щит</h3>
                     <p>
                         Полевая технология персональной обороны. <br>
                         Создает вокруг носителя силовое поле, <br>
@@ -95,7 +95,7 @@
 
             <div class="item-list">
                 <div class="item-card">
-                    <h3>
+                    <h3 style="background-image: url('images/Screenshot_4.png');">
                         Боевая станция <br>
                         «Звезда Смерти»
                     </h3>
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="item-card">
-                    <h3>Базовый кластер Зергов</h3>
+                    <h3 style="background-image: url('images/Screenshot_5.png');">Базовый кластер Зергов</h3>
                     <p>
                         Био-техногенная экосистема агрессивной колонизации. <br>
                         Состоит из органополимерных структур порождающих <br>
@@ -200,7 +200,7 @@
 
         <article id="artefacts" class="slide">
             <h2>Сверх технологии</h2>
-            <p class="annotation">Артефакы и системы, происхождение или принцип действия которых не поддаются осознанию. Попытки обратной инженерии технологий, опережающих современное понимание физики.</p>
+            <p class="annotation">Артефакты и системы, происхождение или принцип действия которых не поддаются осознанию. Попытки обратной инженерии технологий, опережающих современное понимание физики.</p>
 
             <div class="item-list">
                 <div class="item-card">
@@ -221,8 +221,7 @@
                     <h3>Термобиологическая электростанция</h3>
                     <p>
                         Основа энергосети «Машинного мира». <br>
-                        Гибридный энергоузел, преобразующий биоэлектрическую и <br>
-                        тепловую энергию человеческих особей в электроэнергию. <br>
+                        Гибридный энергоузел, преобразующий биоэлектрическую и тепловую энергию человеческих особей в электроэнергию. <br>
                         Высокоэффективная и самоподдерживающаяся система, <br>
                         использующая органику в качестве сырья. <br>
                         С точки зрения ресурсоэффективности - эталон. <br>
@@ -245,15 +244,32 @@
                 </div>
             </div>
         </article>
-        <footer>
-            <p>&copy; Alien's warfare technology</p>
-        </footer>
+
+        <article id="contacts" class="slide slide-contacts">
+            <h2>Контакты</h2>
+
+            <div class="annotation">
+                <div>
+                    <a href="mailto:ctmtuci@mtuci.ru">ctmtuci@mtuci.ru</a>
+                </div>
+                <div>
+                    <a href="tel:+74954521811">+7(495)452-18-11</a>
+                </div>
+                <div>
+                    <a href="https://www.google.com/maps/place/%D0%9A%D0%BE%D0%BB%D0%BB%D0%B5%D0%B4%D0%B6+%D0%A2%D0%B5%D0%BB%D0%B5%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D0%BD%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B9,+%D0%9C%D1%82%D1%83%D1%81%D0%B8/@55.8442417,37.4892696,18.25z/data=!4m6!3m5!1s0x46b546414acbc387:0xc2984d483b1a63d0!8m2!3d55.8442742!4d37.4903382!16s%2Fg%2F11j8llhj0m?authuser=0&entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank">5 Avangardnaya Street, Moscow, 125493</a>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; Alien's warfare technology</p>
+            </footer>
+        </article>
     </section>
 </main>
 
 
 <div id="backdrop" class="modal-backdrop">
     <div class="modal">
+        <div id="modal-close" class="close" onclick="closeModal()">&times;</div>
         <h3 class="title"></h3>
         <p class="phone-text">Оставьте ваш номер, мы вам перезвоним</p>
         <div class="phone-number">

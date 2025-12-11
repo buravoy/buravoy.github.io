@@ -1,10 +1,14 @@
 @font-face {
   font-family: "Bruno";
-  src: url("/public/BrunoAceSC-Regular.ttf");
+  src: url("/fonts/BrunoAceSC-Regular.ttf");
 }
 @font-face {
   font-family: "Jura";
-  src: url("/public/Jura-VariableFont_wght.ttf");
+  src: url("/fonts/Jura-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Fr";
+  src: url("/fonts/fr-fal1.ttf");
 }
 :root {
   --sidebar-width: 360px;
@@ -58,14 +62,14 @@ nav {
   flex-direction: column;
   padding: 20px 0;
 }
-nav a {
+nav span {
   font-weight: 700;
-  text-decoration: none;
+  cursor: pointer;
   padding: 20px;
   color: #2C2825;
   transition: 0.3s;
 }
-nav a:hover {
+nav span:hover {
   background-color: #E6E6E6;
 }
 
@@ -91,6 +95,11 @@ footer {
   display: flex;
   justify-content: flex-end;
   padding: 20px;
+  background: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 aside {
@@ -112,6 +121,7 @@ section {
   padding: 20px;
   min-height: 100vh;
   border-bottom: 1px solid #E6E6E6;
+  position: relative;
 }
 .slide h2 {
   font-size: 58px;
@@ -123,15 +133,41 @@ section {
   font-weight: 700;
   margin-bottom: 40px;
 }
-.slide-home {
-  background-color: burlywood;
+.slide-home, .slide-contacts {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.slide-home .annotation {
+.slide-home .annotation, .slide-contacts .annotation {
   text-align: right;
   margin-bottom: 5px;
+}
+.slide-home {
+  background: url("images/3kju95r9o7eb1.png");
+  background-size: cover;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+.slide-contacts {
+  padding: 20px 20px 70px 20px;
+  background: url("images/Screenshot_7.png");
+  background-size: cover;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+.slide-contacts .annotation {
+  font-family: "Fr", sans-serif;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  line-height: 60px;
+}
+.slide-contacts .annotation a {
+  color: greenyellow;
+  transition: 0.3s;
+}
+.slide-contacts .annotation a:hover {
+  filter: brightness(0.9);
 }
 
 .item-list {
@@ -146,9 +182,13 @@ section {
   flex-direction: column;
 }
 .item-card h3 {
-  background-color: coral;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 150px;
   padding: 20px;
+  color: white;
+  text-shadow: 0 0 5px black;
 }
 .item-card p {
   padding: 20px;
@@ -160,7 +200,7 @@ section {
   margin-top: auto;
   border: none;
   outline: none;
-  font-family: "RobotoFlex", sans-serif;
+  font-family: "Jura", sans-serif;
   background-color: dodgerblue;
   color: white;
   font-weight: 500;
@@ -178,10 +218,28 @@ section {
   background-color: white;
   margin: auto;
   padding: 20px;
+  position: relative;
+}
+.modal .close {
+  width: 40px;
+  height: 40px;
+  color: #c3c3c3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.modal .close:hover {
+  cursor: pointer;
+  color: #939393;
 }
 .modal .title {
   font-size: 24px;
   text-align: center;
+  padding: 0 30px;
 }
 .modal-backdrop {
   position: fixed;
@@ -205,7 +263,7 @@ section {
   width: 260px;
   border: none;
   outline: none;
-  font-family: "RobotoFlex", sans-serif;
+  font-family: "Jura", sans-serif;
   background-color: dodgerblue;
   color: white;
   font-weight: 500;
@@ -258,6 +316,7 @@ section {
   justify-content: space-between;
   padding: 0 5px;
   font-weight: 500;
+  user-select: none;
 }
 .phone-digit label input {
   pointer-events: none;

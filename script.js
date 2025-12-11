@@ -8,10 +8,33 @@ const itemCards = document.querySelectorAll(".item-card");
 
 let completeInterval;
 
-function shuffleElements(parent) {
-    const children = [...parent.children];
-    children.sort(() => Math.random() - 0.5);
-    children.forEach(child => parent.appendChild(child));
+function openModal(title) {
+    orderButton.disabled = !isPhoneCorrect(phoneNumber);
+    modalTitle.innerText = title;
+    modalBackdrop.classList.add("show");
+}
+
+function closeModal() {
+    modalBackdrop.classList.remove('show');
+    setTimeout(dropModalState, 300);
+    clearTimeout(completeInterval)
+}
+
+function dropModalState() {
+    modalTitle.innerText = ''
+    orderButton.innerText = 'ЖДУ ЗВОНКА'
+    orderButton.classList.remove("green");
+    orderButton.classList.add("blue");
+}
+
+function isPhoneCorrect(parent) {
+    const children = parent.querySelectorAll('span');
+    let isCorrect = true;
+
+    for (const c of children) {
+        if (c.innerText === '_') isCorrect = false;
+    }
+    return isCorrect;
 }
 
 function parseInputs(parent, phoneItem) {
@@ -26,16 +49,6 @@ function parseInputs(parent, phoneItem) {
     phoneItem.innerHTML = val;
 }
 
-function isPhoneCorrect(parent) {
-    const children = parent.querySelectorAll('span');
-    let isCorrect = true;
-
-    for (const c of children) {
-        if (c.innerText === '_') isCorrect = false;
-    }
-    return isCorrect;
-}
-
 function clearPhone(parent) {
     const children = parent.querySelectorAll('span');
     const inputs = document.querySelectorAll('input[type=radio]');
@@ -43,36 +56,19 @@ function clearPhone(parent) {
     for (const i of inputs) i.checked = false;
 }
 
-function dropModalState() {
-    modalTitle.innerText = ''
-    orderButton.innerText = 'ЖДУ ЗВОНКА'
-    orderButton.classList.remove("green");
-    orderButton.classList.add("blue");
+function shuffleElements(parent) {
+    const children = [...parent.children];
+    children.sort(() => Math.random() - 0.5);
+    children.forEach(child => parent.appendChild(child));
 }
 
-function orderComplete() {
-    modalBackdrop.classList.remove("show");
-    completeInterval = setTimeout(() => {
-        dropModalState();
-        clearPhone(phoneNumber);
-    }, 300)
+function goToSlide(id) {
+    window.history.pushState({}, '', 'index.html#' + id)
+
+    document.getElementById(id).scrollIntoView({
+        behavior: 'smooth'
+    });
 }
-
-modalWindow.addEventListener("mousedown", e => e.stopPropagation());
-
-modalBackdrop.addEventListener("mousedown", () => setTimeout(() => {
-    dropModalState();
-    clearTimeout(completeInterval)
-}, 300));
-
-orderButton.addEventListener("click", (e) => {
-    if (!isPhoneCorrect(phoneNumber)) return;
-
-    orderButton.innerText = 'ЖДИТЕ ЗВОНКА!';
-    orderButton.classList.add("green");
-
-    setTimeout(orderComplete, 3000)
-})
 
 for (let i = 0; i <= 10; i++) {
     const phoneDigit = document.createElement("div");
@@ -104,6 +100,22 @@ for (let i = 0; i <= 10; i++) {
     phoneSelector.append(phoneDigit);
 }
 
+modalWindow.addEventListener("mousedown", e => e.stopPropagation());
+
+modalBackdrop.addEventListener("mousedown", closeModal);
+
+orderButton.addEventListener("click", () => {
+    if (!isPhoneCorrect(phoneNumber)) return;
+
+    orderButton.innerText = 'ЖДИТЕ ЗВОНКА!';
+    orderButton.classList.add("green");
+
+    completeInterval = setTimeout(() => {
+        closeModal();
+        clearPhone(phoneNumber);
+    }, 3000)
+})
+
 itemCards.forEach(card => {
     const button = card.querySelector("button");
     const title = card.querySelector("h3").innerText
@@ -113,8 +125,6 @@ itemCards.forEach(card => {
     button.addEventListener("click", (e) => {
         const digits = document.querySelectorAll(".phone-digit");
         digits.forEach(digit => shuffleElements(digit));
-
-        modalTitle.innerText = "ЗАКАЗАТЬ " + title;
-        modalBackdrop.classList.add("show");
+        openModal("ЗАКАЗАТЬ " + title)
     });
 })
