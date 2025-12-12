@@ -639,12 +639,16 @@ section {
   }
 
   #messages {
-    height: calc(100% - 100px);
+    height: 400px;
     margin-bottom: 10px;
     width: 100%;
     padding: 10px;
     position: relative;
     overflow: auto;
+
+    @media (max-width: 524px) {
+      height: calc(100% - 100px);
+    }
 
     .forward,
     .reply {
