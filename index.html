@@ -11,17 +11,6 @@
 </head>
 <body>
 
-
-
-
-
-
-
-
-
-
-
-
 <main>
     <aside>
         <header onclick="goToSlide('home', 'Alien\'s warfare technology')">
@@ -50,8 +39,14 @@
             </div>
         </nav>
         <menu>
-            <li onclick="openModal('Записаться на тест драйв')">Записаться на тест драйв</li>
-            <li onclick="goToSlide('contacts')">Контакты</li>
+            <li onclick="openChat()">
+                <img src="images/bubbles-alt-svgrepo-com.svg" alt="">
+                <span>Чат со специалистом</span>
+            </li>
+            <li onclick="goToSlide('contacts')">
+                <img src="images/map-map-marker-svgrepo-com.svg" alt="">
+                <span>Контакты</span>
+            </li>
         </menu>
     </aside>
 
@@ -276,10 +271,9 @@
     </section>
 </main>
 
-
 <div id="backdrop" class="modal-backdrop">
     <div class="modal">
-        <div id="modal-close" class="close" onclick="closeModal()">&times;</div>
+        <div class="close" onclick="closeModal()">&times;</div>
         <h3 class="title"></h3>
         <p class="phone-text">Оставьте ваш номер, мы вам перезвоним</p>
         <div class="phone-number">
@@ -287,6 +281,20 @@
         </div>
         <div class="phone-selector"></div>
         <button class="order-button disable">ЖДУ ЗВОНКА</button>
+    </div>
+</div>
+
+<div id="chat" class="modal-backdrop">
+    <div class="modal">
+        <div class="close" onclick="closeChat()">&times;</div>
+        <h3 class="title">Оператор <span id="op-name"></span> на связи</h3>
+        <div id="messages"></div>
+
+        <div class="write">
+            <textarea rows="1" onkeydown="keyDownHandler(event)"></textarea>
+            <img class="send" src="images/send-svgrepo-com.svg" alt="" onclick="sendMessage()" >
+        </div>
+
     </div>
 </div>
 

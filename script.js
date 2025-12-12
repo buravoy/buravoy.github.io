@@ -5,6 +5,9 @@ const orderButton = document.querySelector(".order-button");
 const phoneSelector = document.querySelector(".phone-selector");
 const phoneNumber = document.querySelector(".phone-number");
 const itemCards = document.querySelectorAll(".item-card");
+const chatModal = document.getElementById("chat");
+const textArea = document.querySelector("textarea");
+const messagesArea = document.getElementById("messages");
 
 let completeInterval;
 
@@ -100,6 +103,54 @@ for (let i = 0; i <= 10; i++) {
     }
 
     phoneSelector.append(phoneDigit);
+}
+
+function randomString(minWords = 5, maxWords = 10, minWordLength = 5, maxWordLength = 15) {
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const generateWord = (length) => Array.from({ length }, () => letters[Math.floor(Math.random() * letters.length)]).join('');
+    const wordCount = getRandomInt(minWords, maxWords);
+
+    return Array.from({ length: wordCount }, () => {
+        const wordLength = getRandomInt(minWordLength, maxWordLength);
+        return generateWord(wordLength);
+    }).join(' ');
+}
+
+function openChat() {
+    document.getElementById('op-name').innerText = randomString(1,1)
+    chatModal.classList.add("show");
+}
+
+function closeChat() {
+    chatModal.classList.remove('show');
+}
+
+function keyDownHandler(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+    }
+}
+
+function sendMessage() {
+    if (textArea.value.trim() === '') return;
+
+    const myMessage = document.createElement('div');
+    myMessage.classList.add("forward");
+    myMessage.innerText = textArea.value.trim()
+    messagesArea.append(myMessage);
+    textArea.value = '';
+    textArea.focus();
+    myMessage.scrollIntoView({behavior: 'smooth'});
+
+    setTimeout(() => {
+        const replyMessage = document.createElement('div');
+        replyMessage.classList.add("reply");
+        replyMessage.innerText = randomString();
+        messagesArea.append(replyMessage);
+        replyMessage.scrollIntoView({behavior: 'smooth'});
+    }, 1000);
 }
 
 modalWindow.addEventListener("mousedown", e => e.stopPropagation());
